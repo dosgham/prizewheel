@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanalei&family=Indie+Flower&display=swap');
+
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    height:100vh;
+    width:100vw;
+}
+.container{
+    width:90vmin;
+    height:90vmin;
+    background-color:aliceblue;
+    position:relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.h2container{
+    position:absolute;
+    width:90vmin;
+    height:15vmin;
+    left:0%;
+    top:0%;
+    display:flex;
+    justify-content: center;
+}
+#sentence{
+    position:absolute;
+    width:70vmin;
+    height:10vmin;
+    left:0%;
+    top:0%;
+    text-align:center;
+    font-family: 'Hanalei', cursive;
+    font-size:5vmin;
+    margin-top:2vmin;
+    
+}
+
+#questionmark{
+    position:absolute;
+    font-family: 'Hanalei', cursive;
+    left:70vmin;
+    width:10vmin;
+    font-size:7vmin;
+    text-align:center;
+    margin:0;
+    animation:tumbling 1s infinite;
+}
+
+@keyframes tumbling{
+    0% {
+        transform:rotate(-20deg);
+    }
+    50% {
+        transform:rotate(20deg);
+    }
+    100%{
+        transform:rotate(-20deg);
+    }
+}
+#canvas{
+    background-color: aliceblue;
+    width:80vmin;
+    height:80vmin;
+    position:absolute;
+}
+#go{
+    position:absolute;
+    top:50%;
+    left:50%;;
+    background-color:#ef476f;
+    width:10%;
+    height:10%;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    cursor:pointer;
+    border:none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 5vmin;
+    color:#540b0e;
+}
+#go:focus{
+    outline:none;
+}
+#go:active{
+    transform:translate(-50%,-50%) scale(0.98);
+}
+#go:hover{
+    top:49.8%;
+}
+#canvas_text{
+    background-color: transparent;
+    width:80vmin;
+    height:80vmin;
+    position:absolute;
+}
+#canvas_pointer{
+    background-color: transparent;
+    width:80vmin;
+    height:80vmin;
+    position:absolute;
+}
+#canvas_gradient{
+    background-color: transparent;
+    width:80vmin;
+    height:80vmin;
+    position:absolute;
+}
+#canvas_prize{
+    background-color: transparent;
+    width:80vmin;
+    height:80vmin;
+    position:absolute;
+}
+
+
+#restart{
+    position:absolute;
+    top:90%;
+    left:80%;
+    width:0%;
+    height:0%;
+    border-radius:30%;
+    transform:translate(-50%,-50%);
+    cursor:pointer;
+    border:none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow:hidden;
+    transition:width, height, 0.5s ease-in, transform 0.1s linear;
+    outline:none;
+    font-family: 'Indie Flower', cursive;
+    font-size: 3vmin;
+}
+
+#restart.finished{
+    
+    background-color:red;
+    width:20%;
+    height:10%;
+}
+
+#restart.finished:hover{
+    top:90%;
+    left:80%;
+    transform:translate(-50%,-50%) scale(0.98);
+}
+
+
+
+
+
+
