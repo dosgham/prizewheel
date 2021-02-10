@@ -82,7 +82,7 @@ body{
     justify-content: center;
     align-items: center;
     font-family: 'Indie Flower', cursive;
-    font-size: 5vmin;
+    font-size: 4.5vmin;
     color:#540b0e;
 }
 #go:focus{
@@ -137,7 +137,7 @@ body{
     transition:width, height, 0.5s ease-in, transform 0.1s linear;
     outline:none;
     font-family: 'Indie Flower', cursive;
-    font-size: 3vmin;
+    font-size: 4.5vmin;
 }
 
 #restart.finished{
