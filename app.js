@@ -314,7 +314,33 @@ function prize_tumbling(){
 
 
 restart.addEventListener('click',()=>{
-    location.reload();
+    canvas_prize.height =1000;
+canvas_prize.width =1000;
+
+ctx.lineWidth = 10;
+ctx_prize.lineWidth = 10;
+ctx_pointer.lineWidth = 5;
+
+canvas_width = canvas.width;
+canvas_height = canvas.height;
+radius = canvas.width/2.5;
+button_status = false;
+speed = 4.00;
+angle = - speed *Math.PI /100;
+dynamicGrd = 0;
+index = 0;
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx_pointer.clearRect(0,0,canvas.width,canvas.height);
+ctx_gradient.clearRect(0,0,canvas.width,canvas.height);
+ctx_prize.clearRect(0,0,canvas.width,canvas.height);
+button.disabled = false;
+canvas_prize.style.zIndex = -1000;
+restart.style.zIndex = -1001;
+window.requestAnimationFrame(draw);
+window.requestAnimationFrame(draw_text);
+window.requestAnimationFrame(draw_pointer);
+window.requestAnimationFrame(draw_gradient);
+button.innerHTML=`<span>Go</span>`;
 })
 
 
