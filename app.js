@@ -80,11 +80,14 @@ button.addEventListener('click',()=>{
         setTimeout(function(){
             clearInterval(interval);
             clearInterval(speed_interval); 
+            
             canvas_prize.style.zIndex = 1000;
             restart.style.zIndex = 1001;
         },4000);
         setTimeout(()=>{
             prize_anim();
+            draw_after();
+            draw_text_after();
             prize_tumbling();
         },5000);
         setTimeout(function(){
@@ -149,8 +152,81 @@ function draw(){
     }
     ctx.restore();
 }
+function draw_after(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    angle = angle + speed *Math.PI /100; 
+    if(dynamicGrd>1){
+        dynamicGrd = dynamicGrd - 1;
+    }
+    ctx.save();
+    ctx.translate(canvas_width/2, canvas_height/2);
+    ctx.rotate(angle);
+    ctx.translate(-canvas_width/2, -canvas_height/2);
+    // -1/4 -1/2
+    ctx.lineWidth=25;
+    index = Math.floor(angle/(Math.PI/4))%8;
+    for(let i=0;i<7-index;i++){
+        ctx.beginPath();
+        ctx.arc(canvas_width/2, canvas_height/2, radius,Math.PI/4*(i-1), Math.PI/4*(i-2),true);
+        ctx.strokeStyle = border_palette[i];
+        ctx.stroke();
+        ctx.lineTo(canvas_width/2,canvas_height/2);
+        ctx.closePath();
+       
+        var grd = ctx.createRadialGradient(canvas_width/2, canvas_height/2,1,canvas_width/2, canvas_height/2,radius);
+        grd.addColorStop(0,'white');
+        grd.addColorStop(0.7,color_palette[i]);
+        ctx.fillStyle = grd;
+        ctx.fill();
+    }
+    for(let i=7-index+1;i<8;i++){
+        ctx.beginPath();
+        ctx.arc(canvas_width/2, canvas_height/2, radius,Math.PI/4*(i-1), Math.PI/4*(i-2),true);
+        ctx.strokeStyle = border_palette[i];
+        ctx.stroke();
+        ctx.lineTo(canvas_width/2,canvas_height/2);
+        ctx.closePath();
+       
+        var grd = ctx.createRadialGradient(canvas_width/2, canvas_height/2,1,canvas_width/2, canvas_height/2,radius);
+        grd.addColorStop(0,'white');
+        grd.addColorStop(0.7,color_palette[i]);
+        ctx.fillStyle = grd;
+        ctx.fill();
+    }
+    ctx.restore();
+}
 
-
+ function draw_text_after(){
+    index = Math.floor(angle/(Math.PI/4))%8;
+    ctx_text.clearRect(0,0,canvas.width,canvas.height);
+    ctx_text.save();
+    ctx_text.translate(canvas_width/2, canvas_height/2);
+    ctx_text.rotate(-Math.PI/8+angle);
+    ctx_text.translate(-canvas_width/2, -canvas_height/2);
+  
+    for(let i = 0;i<7-index;i++){
+    
+    ctx_text.translate(canvas_width/2, canvas_height/2);
+    ctx_text.rotate(Math.PI/4);
+    ctx_text.translate(-canvas_width/2, -canvas_height/2);
+    ctx_text.font='50px "Comic Sans MS"';
+    ctx_text.fillStyle=text_palette[i];
+    ctx_text.fillText(todolist[i],canvas_width/2-ctx_text.measureText(todolist[i]).width/2,canvas_height/2-radius*0.8);
+    }
+    ctx_text.translate(canvas_width/2, canvas_height/2);
+    ctx_text.rotate(Math.PI/4);
+    ctx_text.translate(-canvas_width/2, -canvas_height/2);
+    for(let i = 8-index;i<8;i++){
+    
+        ctx_text.translate(canvas_width/2, canvas_height/2);
+        ctx_text.rotate(Math.PI/4);
+        ctx_text.translate(-canvas_width/2, -canvas_height/2);
+        ctx_text.font='50px "Comic Sans MS"';
+        ctx_text.fillStyle=text_palette[i];
+        ctx_text.fillText(todolist[i],canvas_width/2-ctx_text.measureText(todolist[i]).width/2,canvas_height/2-radius*0.8);
+        }
+    ctx_text.restore();
+} 
 function draw_gradient(){
     
     dynamicGrd = dynamicGrd+0.01;
